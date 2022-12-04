@@ -1,18 +1,21 @@
 #include"fileIo.h"
 #include"stringEncodingProcess.h"
+#include"stringRegexRuledModify.h"
+
 using namespace std;
 
 //TODO: Add file i/o check
+//TODO: rewrite file system
 int main()
 {
     string testString;
     encodingType ecType;
+    size_t byteReadTotal=0;
+    vector<pair<size_t,size_t>>target(4000);//reserve space
     bool BOMStatus;
-    readFile("testFileUTF16LE.txt",testString);
-    cout<<testString<<endl;
+    readFile("changedVersion IFR.txt",testString,byteReadTotal);
     BOMStatus = isBOMExists(testString,ecType);
-    cout<<BOMStatus<<endl;
     transAnySupportedEncodingToASCII(testString,BOMStatus,ecType);
-    cout<<testString<<endl;
-    writeFile("testFileASCII3.txt",testString);
+    modifyFFSFile(testString,target);
+    writeFile("changedVersion IFR ASCII.txt",testString,byteReadTotal);
 }

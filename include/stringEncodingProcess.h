@@ -1,16 +1,8 @@
 #include <iostream>
-#include <regex>
 #include <string>
-#include <vector>
 #include <algorithm>
 
 using namespace std;
-
-struct targetSequence
-{
-    size_t firstCharPos;
-    string target;
-};
 
 enum encodingType
 {

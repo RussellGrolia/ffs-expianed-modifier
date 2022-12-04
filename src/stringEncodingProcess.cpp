@@ -1,5 +1,4 @@
 #include "stringEncodingProcess.h"
-#include<iomanip> 
 
 #define fileLenWarning() cout << "Too short string length, check file and its access permission" << endl
 
@@ -10,12 +9,6 @@
 #define getStrByte(n, str) ((str).c_str()[n])
 #define getPureNbyte(n,str) ((0x0FF<<offset(n))&(getStrByte(n, str) << offset(n)))
 using namespace std;
-
-// struct targetSequence
-// {
-//     size_t firstCharPos;
-//     string target;
-// };
 
 // enum encodingType
 // {
@@ -34,7 +27,6 @@ bool deleteAllchar(string &raw, char charToDelete)
 //int xx(char[0])xx(char[1])xx(char[2])xx(char[3])
 void judgeFromjudgeNumber(int judgeNumber, encodingType &type)
 {
-    cout<<setbase(16)<<judgeNumber<<endl;
     if (judgeNumber == 0xEFBBBF00)
     {
         type = UTF8WITHBOM;
