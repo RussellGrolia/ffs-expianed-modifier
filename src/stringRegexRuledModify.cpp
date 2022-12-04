@@ -83,7 +83,7 @@ bool regexFind(string raw,regex payload,vector<pair<size_t,size_t>> &targets)
 // the second size_t is the length of the target if not match, will not chanrge a thing
 bool praseIFRFile(string &rawffs, vector<pair<size_t,size_t>> &targets)
 {
-    regex searchPayLoad("(0x[0-9ABCDEFG]+)\\s+Variable\\s+0x[0-9ABCDEFG]+\\s+equals\\s+0x[0-9ABCDEFG]+\\s+\\{([\\w\\s]+)\\}", regex_constants::ECMAScript | regex_constants::icase);
+    regex searchPayLoad("(0x[0-9ABCDEF]+)\\s+Variable\\s+0x[0-9ABCDEF]+\\s+equals\\s+0x[0-9ABCDEF]+\\s+\\{([\\w\\s]+)\\}", regex_constants::ECMAScript | regex_constants::icase);
     regex searchPayLoad2("(0x[0-9ABCDEF]+)\\s+Variable\\s+0x[0-9ABCDEF]+\\s+equals\\s+value\\sin\\slist\\s\\(.+\\)\\s+\\{([\\w\\s]+)\\}", regex_constants::ECMAScript | regex_constants::icase);
     regexFind(rawffs,searchPayLoad,targets);
     regexFind(rawffs,searchPayLoad2,targets);
