@@ -3,7 +3,7 @@
 #ignore build
 /build
 #ignore testFile*.*
-testFile*.*
+testFile*
 #ignore .exe
 *.exe
 #ignore .fd
