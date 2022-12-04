@@ -33,6 +33,7 @@ bool readFile(string fileName, string &result, size_t &bytesReadTotal)
         cerr << e.what() << '\n';
         return false;
     }
+    fclose(inFile);
     return true;
 }
 
@@ -53,6 +54,7 @@ bool writeFile(string fileName, string result, size_t bytesToWrite)
         if (writeCount != bytesToWrite)
         {
             fileWarning("write");
+            fclose(outFile);
             return false;
         }
     }
@@ -61,5 +63,6 @@ bool writeFile(string fileName, string result, size_t bytesToWrite)
         cerr << e.what() << '\n';
         return false;
     }
+    fclose(outFile);
     return true;
 }

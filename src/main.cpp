@@ -8,14 +8,22 @@ using namespace std;
 //TODO: rewrite file system
 int main()
 {
-    string testString;
+    string openSequence,rawIFRStr,rawFFSStr;
     encodingType ecType;
-    size_t byteReadTotal=0;
-    vector<pair<size_t,size_t>>target(4000);//reserve space
+    size_t byteReadTotalIFR=0,byteReadTotalFFS=0,openSequcenceLen=0;
+    vector<pair<size_t,size_t>>targets;
+    targets.reserve(8000);//reserve space
     bool BOMStatus;
-    readFile("changedVersion IFR.txt",testString,byteReadTotal);
-    BOMStatus = isBOMExists(testString,ecType);
-    transAnySupportedEncodingToASCII(testString,BOMStatus,ecType);
-    modifyFFSFile(testString,target);
-    writeFile("changedVersion IFR ASCII.txt",testString,byteReadTotal);
+
+    readFile("changedVersion IFR.txt",rawIFRStr,byteReadTotalIFR);
+    BOMStatus = isBOMExists(rawIFRStr,ecType);
+    transAnySupportedEncodingToASCII(rawIFRStr,BOMStatus,ecType);
+    praseIFRFile(rawIFRStr,targets);
+
+    getOpenSequence(openSequence,openSequcenceLen);
+    readFile("changedVersion.ffs",rawFFSStr,byteReadTotalFFS);
+    
+    replaceFFSBytes(rawFFSStr,targets,openSequence,openSequcenceLen,0);
+    writeFile("newVersion.ffs",rawFFSStr,byteReadTotalFFS);
+    return 0;
 }
